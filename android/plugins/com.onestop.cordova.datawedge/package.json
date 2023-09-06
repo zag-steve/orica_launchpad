@@ -1,0 +1,19 @@
+{
+  "name": "motorola-datawedge-cordova-plugin",
+  "version": "1.0.0",
+  "description": "Cordova Motorola DataWedge Plugin\r ============",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielHaddon/motorola-datawedge-cordova-plugin.git"
+  },
+  "author": "Daniel Haddon <Me@danielhaddon.com> (http://www.DanielHaddon.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielHaddon/motorola-datawedge-cordova-plugin/issues"
+  },
+  "homepage": "https://github.com/DanielHaddon/motorola-datawedge-cordova-plugin#readme"
+}

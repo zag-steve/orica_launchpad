@@ -1,0 +1,4 @@
+    dependencies {  
+        //provided files('./systemlibs/com.symbol.emdk.jar')
+        provided files('libs/com.symbol.emdk.jar')
+    }  

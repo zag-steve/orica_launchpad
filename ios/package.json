@@ -1,0 +1,77 @@
+{
+  "name": "com.example.test.orica",
+  "version": "22.10.09.0",
+  "main": "www/index.html",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cordova-plugin-app-version": "^0.1.12",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-cookiemaster": "^1.0.5",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-device-orientation": "^2.0.1",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-geolocation": "^4.1.0",
+    "cordova-plugin-inappbrowser": "^4.1.0",
+    "cordova-plugin-insomnia": "^4.3.0",
+    "cordova-plugin-media": "^5.0.3",
+    "cordova-plugin-media-capture": "^3.0.3",
+    "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-secure-key-store": "^1.5.5",
+    "cordova-plugin-statusbar": "^2.4.3",
+    "cordova-plugin-touchid": "^0.4.0",
+    "cordova-plugin-vibration": "^3.1.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-insomnia": {},
+      "cordova-plugin-touchid": {},
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-contacts": {},
+      "cordova-plugin-cookiemaster": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-media": {},
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-secure-key-store": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-vibration": {},
+      "com.cordova.plugins.cookiemaster": {},
+      "cordova-plugin-device-orientation": {},
+      "cordova-plugin-chooser": {},
+      "cordova-plugin-x-socialsharing": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      },
+      "cordova-plugin-ios-faceid": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-file-opener2": {},
+      "cordova-sqlite-evcore-extbuild-free": {},
+      "@castana/cordova-plugin-ios-xhr": {}
+    },
+    "platforms": [
+      "ios"
+    ]
+  },
+  "devDependencies": {
+    "@castana/cordova-plugin-ios-xhr": "^1.1.6",
+    "cordova-ios": "^7.0.0",
+    "cordova-plugin-add-swift-support": "^2.0.2",
+    "cordova-plugin-camera": "github:rokanraja1/cordova-plugin-camera#android-13-adjust",
+    "cordova-plugin-chooser": "git+https://github.com/soltius/cordova-plugin-chooser.git",
+    "cordova-plugin-file-opener2": "^4.0.0",
+    "cordova-sqlite-evcore-extbuild-free": "^0.14.0",
+    "phonegap-plugin-barcodescanner": "github:soltius/phonegap-plugin-barcodescanner"
+  }
+}

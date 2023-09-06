@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!--This is an auto generated document. Changes to this document may cause incorrect behavior.--><wap-provisioningdoc>
+  <characteristic type="ProfileInfo">
+    <parm name="created_wizard_version" value="7.0.0"/>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="CellOff"/>
+    <parm name="ModifiedDate" value="2018-12-14 16:41:02"/>
+    <parm name="TargetSystemVersion" value="8.2"/>
+    <characteristic type="CellularMgr" version="8.1">
+      <parm name="emdk_name" value="CellOff"/>
+      <parm name="CellularDataState" value="2"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="CellOn"/>
+    <parm name="ModifiedDate" value="2018-12-14 16:41:36"/>
+    <parm name="TargetSystemVersion" value="8.2"/>
+    <characteristic type="CellularMgr" version="8.1">
+      <parm name="emdk_name" value="CellOn"/>
+      <parm name="CellularDataState" value="1"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="wifi"/>
+    <parm name="ModifiedDate" value="2018-12-14 17:24:55"/>
+    <parm name="TargetSystemVersion" value="4.2"/>
+    <characteristic type="Wi-Fi" version="2.7">
+      <parm name="emdk_name" value=""/>
+      <characteristic type="System">
+        <parm name="WiFiAction" value="disable"/>
+      </characteristic>
+      <parm name="UseRegulatory" value="0"/>
+      <parm name="UseAdvancedOptions" value="0"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="wifi_on"/>
+    <parm name="ModifiedDate" value="2018-12-14 17:24:55"/>
+    <parm name="TargetSystemVersion" value="4.2"/>
+    <characteristic type="Wi-Fi" version="2.7">
+      <parm name="emdk_name" value=""/>
+      <characteristic type="System">
+        <parm name="WiFiAction" value="enable"/>
+      </characteristic>
+      <parm name="UseRegulatory" value="0"/>
+      <parm name="UseAdvancedOptions" value="0"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="SettingsMngr"/>
+    <parm name="ModifiedDate" value="2018-12-18 16:45:47"/>
+    <parm name="TargetSystemVersion" value="8.2"/>
+    <characteristic type="SettingsMgr" version="8.1">
+      <parm name="emdk_name" value=""/>
+      <parm name="AirplaneMode" value="2"/>
+      <parm name="SlideOutDrawer" value="2"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="WirelessMngrOn"/>
+    <parm name="ModifiedDate" value="2019-03-13 11:15:00"/>
+    <parm name="TargetSystemVersion" value="4.4"/>
+    <characteristic type="WirelessMgr" version="4.3">
+      <parm name="emdk_name" value="WirelessMngr_on"/>
+      <parm name="Bluetooth" value="1"/>
+      <parm name="BluetoothState" value="1"/>
+      <parm name="NFCState" value="0"/>
+      <parm name="GPSState" value="1"/>
+      <parm name="WWANState" value="1"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="WirelessMngrOff"/>
+    <parm name="ModifiedDate" value="2019-03-13 11:15:33"/>
+    <parm name="TargetSystemVersion" value="4.4"/>
+    <characteristic type="WirelessMgr" version="4.3">
+      <parm name="emdk_name" value="WirelessOff"/>
+      <parm name="Bluetooth" value="2"/>
+      <parm name="BluetoothState" value="2"/>
+      <parm name="NFCState" value="2"/>
+      <parm name="GPSState" value="2"/>
+      <parm name="WWANState" value="2"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="CellMngrOn"/>
+    <parm name="ModifiedDate" value="2019-03-13 11:15:00"/>
+    <parm name="TargetSystemVersion" value="4.4"/>
+    <characteristic type="WirelessMgr" version="4.3">
+      <parm name="emdk_name" value="CellOn"/>
+           <parm name="WWANState" value="1"/>
+    </characteristic>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="CellMngrOff"/>
+    <parm name="ModifiedDate" value="2019-03-13 11:15:33"/>
+    <parm name="TargetSystemVersion" value="4.4"/>
+    <characteristic type="WirelessMgr" version="4.3">
+      <parm name="emdk_name" value="CellOff"/>
+      <parm name="WWANState" value="2"/>
+    </characteristic>
+  </characteristic>
+</wap-provisioningdoc>

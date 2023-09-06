@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="22100900" defaultlocale="en" id="com.example.test.orica" version="22.10.09.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="CookieMaster">
+        <param name="android-package" value="com.cordova.plugins.cookiemaster.CookieMaster" />
+    </feature>
+    <feature name="FingerprintAuth">
+        <param name="android-package" value="com.cordova.plugin.android.fingerprintauth.FingerprintAuth" />
+    </feature>
+    <feature name="AppVersion">
+        <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
+    </feature>
+    <feature name="Battery">
+        <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="Contacts">
+        <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Compass">
+        <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="FileOpener2">
+        <param name="android-package" value="io.github.pwlin.cordova.plugins.fileopener2.FileOpener2" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="Insomnia">
+        <param name="android-package" value="nl.xservices.plugins.Insomnia" />
+    </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
+    <feature name="Capture">
+        <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="SecureKeyStore">
+        <param name="android-package" value="com.securekeystore.plugin.SecureKeyStore" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
+    <feature name="SQLitePlugin">
+        <param name="android-package" value="io.sqlc.SQLitePlugin" />
+    </feature>
+    <feature name="BarcodeScanner">
+        <param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner" />
+    </feature>
+    <feature name="MotorolaDataWedge">
+        <param name="android-package" value="com.bluefletch.motorola.plugin.MotorolaDatawedgePlugin" />
+    </feature>
+    <feature name="NfcPlugin">
+        <param name="android-package" value="com.chariotsolutions.nfc.plugin.NfcPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="CommonPlugin">
+        <param name="android-package" value="com.dff.cordova.plugin.common.CommonPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="EMDKPowerManager">
+        <param name="android-package" value="com.dff.cordova.plugin.emdk.powermanager.EMDKPowerManagerPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Chooser">
+        <param name="android-package" value="com.cyph.cordova.Chooser" />
+    </feature>
+    <feature name="WebViewChecker">
+        <param name="android-package" value="com.nonameprovided.cordova.WebViewChecker.WebViewChecker" />
+    </feature>
+    <author>ZAG Product Development</author>
+    <name>PS1</name>
+    <description>BlueWorx</description>
+    <content src="index.html" />
+    <icon src="resources/icon.png" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <access origin="*" subdomains="true" />
+    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <application android:usesCleartextTraffic="true" />
+        <application android:allowBackup="false" />
+    </edit-config>
+    <resource-file src="resources/android/colors.xml" target="app/src/main/res/values/colors.xml" />
+    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application/activity">
+        <application android:exported="true" />
+    </edit-config>
+    <icon density="ldpi" src="resources/android/icon/ldpi.png" />
+    <icon density="mdpi" src="resources/android/icon/mdpi.png" />
+    <icon density="hdpi" src="resources/android/icon/hdpi.png" />
+    <icon density="xhdpi" src="resources/android/icon/xhdpi.png" />
+    <icon density="xxhdpi" src="resources/android/icon/xxhdpi.png" />
+    <icon density="xxxhdpi" src="resources/android/icon/xxxhdpi.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="fullscreen" value="false" />
+    <preference name="AndroidXEnabled" value="true" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="LoadUrlTimeoutValue" value="70000" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SuppressesLongPressGesture" value="true" />
+    <preference name="permissions" value="none" />
+    <preference name="NativeXHRLogging" value="none" />
+    <preference name="AllowUntrustedCerts" value="true" />
+    <preference name="InterceptRemoteRequests" value="all" />
+    <preference name="allowFileAccessFromFileURLs" value="true" />
+    <preference name="allowUniversalAccessFromFileURLs" value="true" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/gts_tohu_fc.xml" />
+</widget>

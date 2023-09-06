@@ -1,0 +1,109 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.cordova.plugins.cookiemaster": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-android-fingerprint-auth": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-camera": {
+      "ANDROIDX_CORE_VERSION": "1.6.+",
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-chooser": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-contacts": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-device-orientation": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-geolocation": {
+      "GPS_REQUIRED": "true",
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-secure-key-store": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-webview-checker": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "cordova-sqlite-evcore-extbuild-free": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "com.onestop.cordova.datawedge": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "phonegap-nfc": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "dff-cordova-plugin-common": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "dff-cordova-plugin-emdk-powermanager": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    }
+  }
+}

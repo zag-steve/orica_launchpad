@@ -1,0 +1,32 @@
+{
+  "name": "dff-cordova-plugin-common",
+  "version": "2.0.12-0",
+  "description": "Common Plugin",
+  "main": "www/common.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "cordova": {
+    "id": "dff-cordova-plugin-common",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dff-solutions/dff.CordovaPlugin.Common.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "common",
+    "dff",
+    "solutions"
+  ],
+  "author": "Frank Koenigstein",
+  "bugs": {
+    "url": "https://github.com/dff-solutions/dff.CordovaPlugin.Common/issues"
+  },
+  "homepage": "https://github.com/dff-solutions/dff.CordovaPlugin.Common#readme"
+}
+

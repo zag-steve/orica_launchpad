@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="22100900" defaultlocale="en" id="com.example.test.orica" version="22.10.09.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <author>ZAG Product Development</author>
+    <name>PS1</name>
+    <description>BlueWorx</description>
+    <content src="index.html" />
+    <icon src="resources/icon.png" />
+    <platform name="android">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:allowBackup="false" />
+        </edit-config>
+        <resource-file src="resources/android/colors.xml" target="app/src/main/res/values/colors.xml" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application/activity">
+            <application android:exported="true" />
+        </edit-config>
+        <icon density="ldpi" src="resources/android/icon/ldpi.png" />
+        <icon density="mdpi" src="resources/android/icon/mdpi.png" />
+        <icon density="hdpi" src="resources/android/icon/hdpi.png" />
+        <icon density="xhdpi" src="resources/android/icon/xhdpi.png" />
+        <icon density="xxhdpi" src="resources/android/icon/xxhdpi.png" />
+        <icon density="xxxhdpi" src="resources/android/icon/xxxhdpi.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/gts_tohu_fc.xml" />
+    </platform>
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="fullscreen" value="false" />
+    <preference name="AndroidXEnabled" value="true" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="LoadUrlTimeoutValue" value="70000" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SuppressesLongPressGesture" value="true" />
+    <preference name="permissions" value="none" />
+    <preference name="NativeXHRLogging" value="none" />
+    <preference name="AllowUntrustedCerts" value="true" />
+    <preference name="InterceptRemoteRequests" value="all" />
+    <preference name="allowFileAccessFromFileURLs" value="true" />
+    <preference name="allowUniversalAccessFromFileURLs" value="true" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <access origin="*" subdomains="true" />
+</widget>

@@ -1,0 +1,10 @@
+/**
+ * Neptune Sort sap.m.Table: 
+ */
+.nepMTableSortCell,
+.nepMTableSortCell .sapMLabel{
+    cursor: pointer;
+}
+.sapMListTblHeader>.sapMTableTH.nepMTableSortCell:hover {
+	background-color: var(--sapList_SelectionBackgroundColor);
+}

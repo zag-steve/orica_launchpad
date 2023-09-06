@@ -1,0 +1,30 @@
+{
+  "name": "dff-cordova-plugin-emdk-powermanager",
+  "version": "1.2.3",
+  "description": "EMDKPowerManager Plugin",
+  "cordova": {
+    "id": "dff-cordova-plugin-emdk-powermanager",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Orica-4S/TrackandTraceConnectivity.git"
+  },
+  "keywords": [
+    "phonegap",
+    "cordova",
+    "EMDK",
+    "PowerManager",
+    "dff",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Orica-4S/TrackandTraceConnectivity/issues"
+  },
+  "homepage": "https://github.com/Orica-4S/TrackandTraceConnectivity#readme"
+}

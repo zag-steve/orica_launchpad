@@ -1,0 +1,519 @@
+package com.dff.cordova.plugin.emdk.powermanager;
+
+import android.content.Context;
+import android.util.Xml;
+import android.widget.Toast;
+
+import com.dff.cordova.plugin.common.CommonPlugin;
+import com.dff.cordova.plugin.common.log.CordovaPluginLog;
+import com.symbol.emdk.EMDKManager;
+import com.symbol.emdk.EMDKManager.EMDKListener;
+import com.symbol.emdk.EMDKResults;
+import com.symbol.emdk.ProfileManager;
+import org.apache.cordova.CallbackContext;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import android.media.AudioManager;
+import android.media.ToneGenerator;
+
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+
+import android.telephony.TelephonyManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
+
+import java.io.StringReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.lang.StringBuilder;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+
+import java.io.File;
+import android.os.Environment;
+import java.io.FileInputStream;
+
+/**
+ * This plugin implements an interface to the PowerManager Android API.
+ *
+ * @author dff solutions
+ */
+public class EMDKPowerManagerPlugin extends CommonPlugin implements EMDKListener {
+	public static final String LOG_TAG = "com.dff.cordova.plugin.emdk.powermanager.EMDKPowerManagerPlugin";
+	public static final int OPTION_DO_NOTHING = 0;
+	public static final int OPTION_SLEEP_MODE = 1;
+	public static final int OPTION_REBOOT = 4;
+	public static final int OPTION_ENTERPRISE_RESET = 5;
+	public static final int OPTION_FACTORY_RESET = 6;
+	public static final int OPTION_FULL_DDEVICE_WIPE = 7;
+	public static final int OPTION_OS_UPDATE = 8;
+	private Context appContext;
+	// Assign the profile name used in EMDKConfig.xml
+	private String profileName = "PowerManagerProfile";
+	// Declare a variable to store ProfileManager object
+	private ProfileManager profileManager = null;
+	// Declare a variable to store EMDKManager object
+	private EMDKManager emdkManager = null;
+	// Initial Value of the Power Manager options to be executed in the
+	// onOpened() method when the EMDK is ready. Default Value set in the wizard
+	// is 0.
+	// 0 -> Do Nothing
+	// 1 -> Sleep Mode
+	// 4 -> Reboot
+	// 5 -> Enterprise Reset
+	// 6 -> Factory Reset
+	// 7 -> Full Device Wipe
+	// 8 -> OS Update
+	private int value = OPTION_DO_NOTHING;
+
+	// Contains the parm-error name (sub-feature that has error)
+	private String errorName = "";
+
+	// Contains the characteristic-error type (Root feature that has error)
+	private String errorType = "";
+
+	// contains the error description for parm or characteristic error.
+	private String errorDescription = "";
+
+	public EMDKPowerManagerPlugin() {
+		super(LOG_TAG);
+	}
+
+	/**
+	 * Called after plugin construction and fields have been initialized. Prefer to
+	 * use pluginInitialize instead since there is no value in having parameters on
+	 * the initialize() function.
+	 *
+	 * @param cordova
+	 * @param webView
+	 */
+	public void pluginInitialize() {
+		super.pluginInitialize();
+		this.appContext = this.cordova.getActivity().getApplicationContext();
+
+		try {
+			// The EMDKManager object will be created and returned in the callback.
+			EMDKResults results = EMDKManager.getEMDKManager(appContext, this);
+			CordovaPluginLog.d(LOG_TAG, "EMDKResult: " + EMDKResultToJson(results));
+
+			// Check the return status of getEMDKManager
+			if (results.statusCode == EMDKResults.STATUS_CODE.SUCCESS) {
+				CordovaPluginLog.i(LOG_TAG, "EMDKManager object creation success");
+			} else {
+				CordovaPluginLog.e(LOG_TAG, "EMDKManager object creation failed");
+			}
+		} catch (Exception e) {
+			CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public void onClosed() {
+		if (emdkManager != null) {
+			emdkManager.release();
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		// Clean up the objects created by EMDK manager
+		if (emdkManager != null) {
+			emdkManager.release();
+		}
+	}
+
+	@Override
+	public void onOpened(EMDKManager emdkManager) {
+		this.emdkManager = emdkManager;
+
+		// Get the ProfileManager object to process the profiles
+		profileManager = (ProfileManager) emdkManager.getInstance(EMDKManager.FEATURE_TYPE.PROFILE);
+
+		if (profileManager != null) {
+			String[] modifyData = new String[1];
+
+			// Call processProfile with profile name and SET flag to create the
+			// profile. The modifyData can be null.
+			EMDKResults results = profileManager.processProfile(profileName, ProfileManager.PROFILE_FLAG.SET,
+					modifyData);
+
+			try {
+				CordovaPluginLog.i(LOG_TAG, "EMDKResult: " + EMDKResultToJson(results));
+			} catch (JSONException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+
+			if (results.statusCode == EMDKResults.STATUS_CODE.CHECK_XML) {
+				// Method call to handle EMDKResult
+				handleEMDKResult(results);
+			} else {
+				CordovaPluginLog.e(LOG_TAG, "Failed to apply profile... " + profileName);
+			}
+		}
+	}
+
+	private JSONObject EMDKResultToJson(EMDKResults results) throws JSONException {
+		JSONObject jsonResult = new JSONObject();
+		String status = "";
+
+		switch (results.statusCode) {
+		case SUCCESS:
+			status = "SUCCESS";
+			break;
+		case FAILURE:
+			status = "FAILURE";
+			break;
+		case CHECK_XML:
+			status = "CHECK_XML";
+			break;
+		case EMDK_NOT_OPENED:
+			status = "EMDK_NOT_OPENED";
+			break;
+		case EMPTY_PROFILENAME:
+			status = "EMPTY_PROFILENAME";
+			break;
+		case NO_DATA_LISTENER:
+			status = "NO_DATA_LISTENER";
+			break;
+		case NULL_POINTER:
+			status = "NULL_POINTER";
+			break;
+		case PREVIOUS_REQUEST_IN_PROGRESS:
+			status = "PREVIOUS_REQUEST_IN_PROGRESS";
+			break;
+		case PROCESSING:
+			status = "PROCESSING";
+			break;
+		case UNKNOWN:
+			status = "UNKNOWN";
+			break;
+		default:
+			status = "UNKNOWN";
+			break;
+		}
+
+		jsonResult.put("status", status);
+		jsonResult.put("statusCode", results.statusCode);
+		jsonResult.put("statusString", results.getStatusString());
+		jsonResult.put("statusDocument", results.getStatusDocument());
+		jsonResult.put("extendedStatusMessage", results.getExtendedStatusMessage());
+		jsonResult.put("successFeaturesCount", results.getSuccessFeaturesCount());
+		jsonResult.put("totalFeaturesCount", results.getTotalFeaturesCount());
+
+		return jsonResult;
+	}
+
+	// Method to handle EMDKResult by extracting response and parsing it
+	public void handleEMDKResult(EMDKResults results) {
+		// Get XML response as a String
+		String statusXMLResponse = results.getStatusString();
+
+		try {
+			// Create instance of XML Pull Parser to parse the response
+			XmlPullParser parser = Xml.newPullParser();
+			// Provide the string response to the String Reader that reads
+			// for the parser
+			parser.setInput(new StringReader(statusXMLResponse));
+			// Call method to parse the response
+			parseXML(parser);
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+			CordovaPluginLog.e(LOG_TAG, e.toString());
+		}
+
+		// Method call to display results in a dialog
+		CordovaPluginLog.e(LOG_TAG, "Name: " + errorName + "; Type: " + errorType + "; desc: " + errorDescription);
+	}
+
+	// Method to parse the XML response using XML Pull Parser
+	public void parseXML(XmlPullParser myParser) {
+		int event;
+		try {
+			event = myParser.getEventType();
+			while (event != XmlPullParser.END_DOCUMENT) {
+				String name = myParser.getName();
+				switch (event) {
+				case XmlPullParser.START_TAG:
+					// Get Status, error name and description in case of
+					// parm-error
+					if (name.equals("parm-error")) {
+						errorName = myParser.getAttributeValue(null, "name");
+						errorDescription = myParser.getAttributeValue(null, "desc");
+
+						// Get Status, error type and description in case of
+						// parm-error
+					} else if (name.equals("characteristic-error")) {
+						errorType = myParser.getAttributeValue(null, "type");
+						errorDescription = myParser.getAttributeValue(null, "desc");
+					}
+					break;
+				case XmlPullParser.END_TAG:
+					break;
+				}
+				event = myParser.next();
+			}
+		} catch (Exception e) {
+			CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+		}
+	}
+
+	// Method that applies the modified settings to the EMDK Profile based on
+	// user selected options of Power Manager feature.
+	private void modifyProfile_XMLString(CallbackContext callbackContext) throws JSONException {
+		if (profileManager != null) {
+			// Prepare XML to modify the existing profile
+			String[] modifyData = new String[1];
+			// Modified XML input for Sleep and Reboot feature based on user
+			// selected options of radio button
+			// value = 1 -> Sleep Mode
+			// value = 4 -> Reboot
+			modifyData[0] = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<characteristic type=\"Profile\">"
+					+ "<parm name=\"ProfileName\" value=\"PowerManagerProfile\"/>"
+					+ "<characteristic type=\"PowerMgr\">" + "<parm name=\"ResetAction\" value=\"" + value + "\"/>"
+					+ "</characteristic>" + "</characteristic>";
+
+			// Call process profile to modify the profile of specified profile
+			// name
+			EMDKResults results = profileManager.processProfile(profileName, ProfileManager.PROFILE_FLAG.SET,
+					modifyData);
+			Toast.makeText(webView.getContext(), "applying", Toast.LENGTH_SHORT).show();
+			JSONObject jsonResult = EMDKResultToJson(results);
+
+			CordovaPluginLog.i(LOG_TAG, "EMDKResult: " + EMDKResultToJson(results));
+
+			if (results.statusCode == EMDKResults.STATUS_CODE.CHECK_XML) {
+				// Method call to handle EMDKResult
+				handleEMDKResult(results);
+			} else {
+				CordovaPluginLog.e(LOG_TAG, "Failed to apply profile... " + profileName);
+			}
+
+			callbackContext.success(jsonResult);
+		} else {
+			String msg = "profile manager not instantiated";
+			CordovaPluginLog.e(LOG_TAG, msg);
+			callbackContext.error(msg);
+		}
+	}
+
+	private void ApplyProfile_XMLString(String profName, CallbackContext callbackContext) throws JSONException {
+		if (profileManager != null) {
+			// Prepare XML to modify the existing profile
+			String[] modifyData = new String[1];
+			// Modified XML input for Sleep and Reboot feature based on user
+			// selected options of radio button
+			// value = 1 -> Sleep Mode
+			// value = 4 -> Reboot
+
+			// Call process profile to modify the profile of specified profile
+			// name
+			EMDKResults results = profileManager.processProfile(profName, ProfileManager.PROFILE_FLAG.SET, modifyData);
+			JSONObject jsonResult = EMDKResultToJson(results);
+
+			CordovaPluginLog.i(LOG_TAG, "EMDKResult: " + EMDKResultToJson(results));
+
+			if (results.statusCode == EMDKResults.STATUS_CODE.CHECK_XML) {
+				// Method call to handle EMDKResult
+				handleEMDKResult(results);
+			} else {
+				CordovaPluginLog.e(LOG_TAG, "Failed to apply profile... " + profileName);
+			}
+
+			callbackContext.success(jsonResult);
+		} else {
+			String msg = "profile manager not instantiated";
+			CordovaPluginLog.e(LOG_TAG, msg);
+			callbackContext.error(msg);
+		}
+	}
+
+	/**
+	 * Executes the request.
+	 * <p>
+	 * This method is called from the WebView thread. To do a non-trivial amount of
+	 * work, use: cordova.getThreadPool().execute(runnable);
+	 * <p>
+	 * To run on the UI thread, use: cordova.getActivity().runOnUiThread(runnable);
+	 *
+	 * @param action          The action to execute.
+	 * @param args            The exec() arguments.
+	 * @param callbackContext The callback context used when calling back into
+	 *                        JavaScript.
+	 * @return Whether the action was valid.
+	 */
+	@Override
+	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+
+		CordovaPluginLog.i(LOG_TAG, "call for action: " + action + "; parms: " + args);
+
+		if (action.equals("reboot")) {
+			// String reason = jsonArgs.getString(reasonArg);
+			// this.powerManager.reboot(reason);
+			value = OPTION_REBOOT; // 4 - Perform Reset/Reboot (Reboot Device)
+			// Apply Settings selected by user
+			modifyProfile_XMLString(callbackContext);
+
+			return true;
+		}
+		if (action.equals("wifi_on")) {
+
+			ApplyProfile_XMLString("wifi_on", callbackContext);
+
+			return true;
+		}
+		if (action.equals("wifioff")) {
+
+			ApplyProfile_XMLString("wifi", callbackContext);
+
+			return true;
+		}
+		if (action.equals("WirelessMngrOn")) {
+
+			ApplyProfile_XMLString("WirelessMngrOn", callbackContext);
+
+			return true;
+		}
+		if (action.equals("WirelessMngrOff")) {
+
+			ApplyProfile_XMLString("WirelessMngrOff", callbackContext);
+
+			return true;
+		}
+
+		if (action.equals("TurnOnAllRadios")) {
+			ApplyProfile_XMLString("wifi_on", callbackContext);
+			ApplyProfile_XMLString("WirelessMngrOn", callbackContext);
+
+			return true;
+		}
+
+		if (action.equals("TurnOffAllRadios")) {
+			ApplyProfile_XMLString("wifi", callbackContext);
+			ApplyProfile_XMLString("WirelessMngrOff", callbackContext);
+
+			return true;
+		}
+
+		if (action.equals("PlayBeepSound")) {
+			final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+			tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+			tg.release(); // release to avoid crashes
+
+			return true;
+		}
+
+		if (action.equals("PlayErrorSound")) {
+			// Use system notification sound
+			Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+			Ringtone r = RingtoneManager.getRingtone(webView.getContext(), notification);
+			r.play();
+
+			return true;
+		}
+
+		if (action.equals("TurnOffCell")) {
+			ApplyProfile_XMLString("CellMngrOff", callbackContext);
+
+			return true;
+		}
+
+		if (action.equals("TurnOnCell")) {
+			ApplyProfile_XMLString("CellMngrOn", callbackContext);
+
+			return true;
+		}
+
+		if (action.equals("IsCellConnectionEnabled")) {
+			TelephonyManager tel = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+			boolean telstatus = ((tel.getNetworkOperator() != null && tel.getNetworkOperator().equals("")) ? false
+					: true);
+			// Toast.makeText(webView.getContext(),"Cell connection " +
+			// telstatus,Toast.LENGTH_SHORT).show();
+			if (telstatus) {
+				callbackContext.success("true");
+			} else {
+				callbackContext.success("false");
+			}
+
+			return true;
+
+		}
+
+		if (action.equals("CheckConnecType")) {
+			ConnectivityManager connMgr = (ConnectivityManager) webView.getContext()
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			boolean isWifiConn = false;
+			boolean isMobileConn = false;
+			boolean isEthernet = false;
+			String networkType = "";
+			for (Network network : connMgr.getAllNetworks()) {
+				NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
+				if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+					isWifiConn |= networkInfo.isConnected();
+					networkType = "Wi-Fi";
+				}
+				if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+					isMobileConn |= networkInfo.isConnected();
+					networkType = "Cellular";
+				}
+				if (networkInfo.getType() == ConnectivityManager.TYPE_ETHERNET) {
+					isEthernet |= networkInfo.isConnected();
+					networkType = "Ethernet";
+				}
+			}
+			if (networkType.isEmpty() != true) {
+				callbackContext.success(networkType);
+			} else {
+				callbackContext.success("None");
+			}
+			return true;
+
+		}
+
+		if (action.equals("GSMAllowedFile")) {
+			
+		String FilePath = "/sdcard/TTConfig/TTConfig.txt";
+		String IsGSMAllowed = "NotAllowed";
+        BufferedReader br = null;
+
+        try {
+            br = new BufferedReader(new FileReader(FilePath));
+            String data = null;
+
+            while ((data = br.readLine()) != null) {
+                if(data.contains("GSM Yes")) {
+                	IsGSMAllowed = "Allowed";
+                }
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }			
+
+			callbackContext.success(IsGSMAllowed);
+
+			return true;
+
+		}
+
+		return super.execute(action, args, callbackContext);
+	}
+}
