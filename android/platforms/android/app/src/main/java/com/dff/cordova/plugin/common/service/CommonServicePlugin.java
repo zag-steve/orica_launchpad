@@ -1,8 +1,11 @@
 package com.dff.cordova.plugin.common.service;
 
 import android.os.Build;
-import androidx.annotation.RequiresApi;
+//import android.support.annotation.RequiresApi;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+
 import com.dff.cordova.plugin.common.CommonPlugin;
 import com.dff.cordova.plugin.common.action.CordovaAction;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;

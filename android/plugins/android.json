@@ -10,6 +10,9 @@
     "com.cordova.plugins.cookiemaster": {
       "PACKAGE_NAME": "com.example.test.orica"
     },
+    "com.onestop.cordova.datawedge": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
     "cordova-plugin-android-fingerprint-auth": {
       "PACKAGE_NAME": "com.example.test.orica"
     },
@@ -84,17 +87,11 @@
     "cordova-sqlite-evcore-extbuild-free": {
       "PACKAGE_NAME": "com.example.test.orica"
     },
-    "phonegap-plugin-barcodescanner": {
-      "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "com.example.test.orica"
-    },
-    "com.onestop.cordova.datawedge": {
-      "PACKAGE_NAME": "com.example.test.orica"
-    },
     "phonegap-nfc": {
       "PACKAGE_NAME": "com.example.test.orica"
     },
-    "dff-cordova-plugin-common": {
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.example.test.orica"
     },
     "dff-cordova-plugin-emdk-powermanager": {
@@ -103,6 +100,9 @@
   },
   "dependent_plugins": {
     "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.example.test.orica"
+    },
+    "dff-cordova-plugin-common": {
       "PACKAGE_NAME": "com.example.test.orica"
     }
   }

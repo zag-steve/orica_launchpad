@@ -302,7 +302,6 @@ dependencies {
     implementation(project(path: ":CordovaLib"))
     implementation "androidx.core:core:1.6.+"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

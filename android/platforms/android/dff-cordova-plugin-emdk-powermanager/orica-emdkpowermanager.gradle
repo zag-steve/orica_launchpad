@@ -1,4 +1,16 @@
     dependencies {  
         //provided files('./systemlibs/com.symbol.emdk.jar')
-        provided files('libs/com.symbol.emdk.jar')
-    }  
+        // provided files('libs/com.symbol.emdk.jar')
+    }
+
+
+
+    repositories {
+        maven {
+            url = "https://zebratech.jfrog.io/artifactory/EMDK-Android/"
+        }
+    }
+
+    dependencies {
+        compileOnly 'com.symbol:emdk:9.1.1'
+    }

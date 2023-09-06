@@ -9,6 +9,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "com.onestop.cordova.datawedge.MotorolaDataWedge",
+      "file": "plugins/com.onestop.cordova.datawedge/www/datawedge.js",
+      "pluginId": "com.onestop.cordova.datawedge",
+      "clobbers": [
+        "datawedge"
+      ]
+    },
+    {
       "id": "cordova-plugin-android-fingerprint-auth.FingerprintAuth",
       "file": "plugins/cordova-plugin-android-fingerprint-auth/www/FingerprintAuth.js",
       "pluginId": "cordova-plugin-android-fingerprint-auth",
@@ -556,26 +564,18 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "phonegap-nfc.NFC",
+      "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+      "pluginId": "phonegap-nfc",
+      "runs": true
+    },
+    {
       "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
       "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
       "pluginId": "phonegap-plugin-barcodescanner",
       "clobbers": [
         "cordova.plugins.barcodeScanner"
       ]
-    },
-    {
-      "id": "com.onestop.cordova.datawedge.MotorolaDataWedge",
-      "file": "plugins/com.onestop.cordova.datawedge/www/datawedge.js",
-      "pluginId": "com.onestop.cordova.datawedge",
-      "clobbers": [
-        "datawedge"
-      ]
-    },
-    {
-      "id": "phonegap-nfc.NFC",
-      "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
-      "pluginId": "phonegap-nfc",
-      "runs": true
     },
     {
       "id": "dff-cordova-plugin-common.common",
@@ -596,6 +596,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
   ];
   module.exports.metadata = {
     "com.cordova.plugins.cookiemaster": "1.0.0",
+    "com.onestop.cordova.datawedge": "1.0.1",
     "cordova-plugin-android-fingerprint-auth": "1.5.0",
     "cordova-plugin-androidx-adapter": "1.1.3",
     "cordova-plugin-app-version": "0.1.14",
@@ -621,9 +622,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "6.0.4",
     "cordova-sqlite-evcore-extbuild-free": "0.18.0",
-    "phonegap-plugin-barcodescanner": "8.1.2",
-    "com.onestop.cordova.datawedge": "1.0.1",
     "phonegap-nfc": "1.3.0",
+    "phonegap-plugin-barcodescanner": "8.1.2",
     "dff-cordova-plugin-common": "2.0.12-0",
     "dff-cordova-plugin-emdk-powermanager": "1.0.1"
   };

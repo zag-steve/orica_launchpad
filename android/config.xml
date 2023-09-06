@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget android-versionCode="22100900" defaultlocale="en" id="com.example.test.orica" version="22.10.09.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <author>ZAG Product Development</author>
-    <name>PS1</name>
-    <description>BlueWorx</description>
+    <name>OricaTest</name>
+    <description>Orica Test App</description>
     <content src="index.html" />
     <icon src="resources/icon.png" />
     <platform name="android">

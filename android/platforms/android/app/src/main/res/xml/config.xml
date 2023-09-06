@@ -3,6 +3,9 @@
     <feature name="CookieMaster">
         <param name="android-package" value="com.cordova.plugins.cookiemaster.CookieMaster" />
     </feature>
+    <feature name="MotorolaDataWedge">
+        <param name="android-package" value="com.bluefletch.motorola.plugin.MotorolaDatawedgePlugin" />
+    </feature>
     <feature name="FingerprintAuth">
         <param name="android-package" value="com.cordova.plugin.android.fingerprintauth.FingerprintAuth" />
     </feature>
@@ -66,23 +69,12 @@
     <feature name="SQLitePlugin">
         <param name="android-package" value="io.sqlc.SQLitePlugin" />
     </feature>
-    <feature name="BarcodeScanner">
-        <param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner" />
-    </feature>
-    <feature name="MotorolaDataWedge">
-        <param name="android-package" value="com.bluefletch.motorola.plugin.MotorolaDatawedgePlugin" />
-    </feature>
     <feature name="NfcPlugin">
         <param name="android-package" value="com.chariotsolutions.nfc.plugin.NfcPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="CommonPlugin">
-        <param name="android-package" value="com.dff.cordova.plugin.common.CommonPlugin" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="EMDKPowerManager">
-        <param name="android-package" value="com.dff.cordova.plugin.emdk.powermanager.EMDKPowerManagerPlugin" />
-        <param name="onload" value="true" />
+    <feature name="BarcodeScanner">
+        <param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner" />
     </feature>
     <feature name="Chooser">
         <param name="android-package" value="com.cyph.cordova.Chooser" />
@@ -91,8 +83,8 @@
         <param name="android-package" value="com.nonameprovided.cordova.WebViewChecker.WebViewChecker" />
     </feature>
     <author>ZAG Product Development</author>
-    <name>PS1</name>
-    <description>BlueWorx</description>
+    <name>OricaTest</name>
+    <description>Orica Test App</description>
     <content src="index.html" />
     <icon src="resources/icon.png" />
     <allow-intent href="http://*/*" />
@@ -133,4 +125,12 @@
     <preference name="allowFileAccessFromFileURLs" value="true" />
     <preference name="allowUniversalAccessFromFileURLs" value="true" />
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/gts_tohu_fc.xml" />
+    <feature name="CommonPlugin">
+        <param name="android-package" value="com.dff.cordova.plugin.common.CommonPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="EMDKPowerManager">
+        <param name="android-package" value="com.dff.cordova.plugin.emdk.powermanager.EMDKPowerManagerPlugin" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>
